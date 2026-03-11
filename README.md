@@ -31,8 +31,6 @@ There are no servers (like Mastodon) or relays (like the AT Protocol) in the mid
 And unlike almost all social media platform today, 
  `s@` is not designed for *influencers*.
 To see a friend's post or to have a friend see your post, you must follow *each other*[^2].
-Of course it is still possible for a malicious actors to crawl and follow everyone,
- but they would probably prefer a different platform anyways.
 
 [^1]: Of course, if you use a service to host your website, the server will have your (encrypted) data.
 [^2]: How do you ask a friend to follow? Idk, text them. Or just ask them in person. You're friends, right?
