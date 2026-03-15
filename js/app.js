@@ -207,16 +207,16 @@ async function refreshFeed() {
       }
     }
 
-    // Also fetch own posts to detect synced pending posts authored by self
+    // Clear synced pending posts and merge remaining ones
+    const remoteIds = new Set(postArrays.flat().map((p) => p.id));
+
+    // Also check own remote post index so pending posts authored by self get cleared
     try {
-      const ownPosts = await feed.fetchUserPosts(domain, domain, sk, DEFAULT_FEED_LIMIT);
-      postArrays.push(ownPosts);
+      const ownIndex = await feed.fetchPostIndex(domain);
+      for (const id of ownIndex.posts) remoteIds.add(id);
     } catch {
       // not yet published, ignore
     }
-
-    // Clear synced pending posts and merge remaining ones
-    const remoteIds = new Set(postArrays.flat().map((p) => p.id));
     const pendingPosts = clearSyncedPosts(remoteIds);
     if (pendingPosts.length > 0) {
       postArrays.push(pendingPosts);
